@@ -61,3 +61,33 @@ Você pode usar a API do *[OpenWeatherMaps](https://openweathermap.org)* para bu
   * Manutenabilidade;
   * Testes Unitários (quando necessário)
   * ... pois avaliaremos tudo isso!
+
+
+# Resolução do Desafio
+
+### Containerização 
+
+Projeto usando sistema de container do Docker. Para levantar o ambiente, executar no prompt:
+- Dentro do diretório do projeto (ApiPlaylistOnLocation), executar no prompt: 
+  1.1. `docker build -t api:1.0`
+  1.2. `docker container run -p 5000:80 api:1.0`
+  1.3. Rodar no navegador: `localhost:5000/api/v1/recife` 
+- [Imagem Docker da aplicação no Docker Hub](https://hub.docker.com/r/marcelinoborges/api-playlist-by-location-temperature)
+
+# Documentação da API
+
+**ENDPOINTS**:
+
+1. GET (Por nome de cidade):
+   - Caminho: `/api/v1/{nome-da-cidade}`
+   - Retornos:
+	 - 500: Erro interno do servidor + JSON com detalhes da mensagem de erro.
+	 - 400: Cidade ou coordenada não encontrada + JSON com detalhes da mensagem de erro.
+	 - 200: Sucesso na requisição + JSON com playlist.
+
+2. GET (Por coordenadas): 
+   - Caminho: `/api/v1/lat={latitude}&lon={longitude}`
+   - Retornos:
+	 - 500: Erro interno do servidor + JSON com detalhes da mensagem de erro.
+	 - 400: Cidade ou coordenada não encontrada + JSON com detalhes da mensagem de erro.
+	 - 200: Sucesso na requisição + JSON com playlist.
